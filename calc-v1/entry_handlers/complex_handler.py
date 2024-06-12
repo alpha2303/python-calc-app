@@ -1,12 +1,12 @@
-from .input_handler import IInputHandler
+from .entry_handler import IEntryHandler
 from common import Complex
 
 """
-ComplexHandler - Class to provide input interface for Complex Number datatypes
+ComplexHandler - Class providing input handling for Complex Number datatypes
 
-Inherits IInputHandler interface
+Inherits IEntryHandler interface
 """
-class ComplexHandler(IInputHandler):
+class ComplexEntryHandler(IEntryHandler):
     
     @staticmethod
     def get_input():

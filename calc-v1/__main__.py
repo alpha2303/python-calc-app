@@ -1,4 +1,4 @@
-from .input_handlers import IntegerHandler, ComplexHandler
+from .entry_handlers import IntegerEntryHandler, ComplexEntryHandler
 
 operations = {
     1: lambda x, y: x + y,
@@ -7,9 +7,9 @@ operations = {
     4: lambda x, y: x / y,
 }
 
-input_handlers = {
-    1: IntegerHandler.get_input,
-    2: ComplexHandler.get_input,
+entry_handlers = {
+    1: IntegerEntryHandler.get_input,
+    2: ComplexEntryHandler.get_input,
 }
 
 if __name__ == "__main__":
@@ -26,16 +26,24 @@ if __name__ == "__main__":
         if not choice: # zero int value of choice variable is treated as False value -> "not choice" will be True
             break
 
+        if choice not in operations.keys():
+            print("ERROR - Invalid operation choice.")
+            continue
+
         print("Choose Datatype: ")
         print("1. Integer")
         print("2. Complex Number")
         type_choice = int(input("Enter choice of datatype: "))
 
+        if type_choice not in entry_handlers.keys():
+            print("ERROR - Invalid type choice")
+            continue
+
         # using dictionary is a good way to handle multple cases in Python (switch statement)
         print("Enter Operand 1 ->")
-        value1 = input_handlers[type_choice]()
+        value1 = entry_handlers[type_choice]()
         print("Enter Operand 2 ->")
-        value2 = input_handlers[type_choice]()
+        value2 = entry_handlers[type_choice]()
         try:
             result = operations[choice](value1, value2)
             print("\nResult: " + result.to_string() +"\n")
